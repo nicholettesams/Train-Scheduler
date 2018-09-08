@@ -1,9 +1,9 @@
 <!DOCTYPE <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Anytime is Train Time</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- jQuery -->
@@ -11,7 +11,6 @@
 
       <!-- Bootstrap CDN-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
       <!-- Firebase Reference -->
       <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -40,14 +39,8 @@
                                 <th scope="col">Minutes Away</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
+                            <tbody id="train-table-body">
+                                <!--Train info will be appended here-->
                             </tbody>
                           </table>
             </div>
@@ -73,7 +66,7 @@
                         <label for="freq-input">Frequency (min)</label>
                         <input type="text" class="form-control" id="freq-input">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit-train" type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
