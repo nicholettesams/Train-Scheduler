@@ -1,5 +1,4 @@
 // Initialize Firebase
-/*
   var config = {
     apiKey: "AIzaSyCQcVj-0Be5_riZGy78furc9QI1gTl2vno",
     authDomain: "train-scheduler-b6603.firebaseapp.com",
@@ -11,10 +10,9 @@
   
   firebase.initializeApp(config);
   var database = firebase.database();
-*/
+
   // Whenever a user clicks the submit-train button
-$("#submit-train").on("click", function(event) {
-  console.log("clicked!")
+$("#submit").on("click", function(event) {
   // Prevent form from submitting
   event.preventDefault();
 
@@ -31,21 +29,20 @@ $("#submit-train").on("click", function(event) {
   console.log(frequency)
 
     // Save the new price in Firebase
-  /*
-    database.ref('trains').set({
+    database.ref().set({
       trainName: trainName,
       destination: destination,
       firstTime: firstTime,
       frequency: frequency
     });
-*/
 
     // Change the HTML to reflect the new train
     var newTR = $("<tr>")
     var newTDName = $("<td>").text(trainName)
     var vewTDDest = $("<td>").text(destination)
-    var newTDTime = $("<td>").text(firstTime)
-    var newTDMin = $("<td>").text(frequency)
+    //TODO: calculate first time and minutes away
+    var newTDTime = $("<td>").text("*need to calc")
+    var newTDMin = $("<td>").text("*need to calc")
 
     newTR.append(newTDName).append(vewTDDest).append(newTDTime).append(newTDMin)
     $("#train-table-body").append(newTR)
