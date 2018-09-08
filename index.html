@@ -6,18 +6,10 @@
     <title>Anytime is Train Time</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- jQuery -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-      <!-- Bootstrap CDN-->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  
-      <!-- Firebase Reference -->
-      <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-
-      <!--My links-->
-      <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-      <script src="assets/javascript/script.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
 <body>
 
@@ -29,20 +21,20 @@
         <div class="card">
             <h5 class="card-header">Current Train Schedule</h5>
             <div class="card-body">
-                    <table class="table">
-                            <thead class="thead-light">
-                              <tr>
-                                <th scope="col">Train Name</th>
-                                <th scope="col">Destination</th>
-                                <th scope="col">Frequency (min)</th>
-                                <th scope="col">Next Arrival</th>
-                                <th scope="col">Minutes Away</th>
-                              </tr>
-                            </thead>
-                            <tbody id="train-table-body">
-                                <!--Train info will be appended here-->
-                            </tbody>
-                          </table>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody id="train-table-body">
+                        <!--Train info will be appended here-->
+                    </tbody>
+                </table>
             </div>
         </div>
         <br>
@@ -66,11 +58,20 @@
                         <label for="freq-input">Frequency (min)</label>
                         <input type="text" class="form-control" id="freq-input">
                     </div>
-                    <button id="submit-train" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
     
+      <!-- jQuery -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <!-- Firebase Reference -->
+      <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+      <!--My script-->
+      <script src="assets/javascript/script.js"></script>
+
 </body>
 </html>
