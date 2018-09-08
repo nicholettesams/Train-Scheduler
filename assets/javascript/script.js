@@ -29,6 +29,7 @@ $("#submit").on("click", function(event) {
   console.log(frequency)
 
     // Save the new price in Firebase
+    //TODO: change to .push()
     database.ref().set({
       trainName: trainName,
       destination: destination,
@@ -47,4 +48,14 @@ $("#submit").on("click", function(event) {
     newTR.append(newTDName).append(vewTDDest).append(newTDTime).append(newTDMin)
     $("#train-table-body").append(newTR)
 
+});
+
+// At the initial load and subsequent value changes, get a snapshot of the stored data.
+database.ref().on("value", function(snapshot) {
+
+    //TODO: loop through all records and display to the grid
+
+
+}, function(error) {
+    console.log("Database call failed: " + error.code)
 });
