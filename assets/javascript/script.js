@@ -17,8 +17,8 @@ $("#submit").on("click", function(event) {
   event.preventDefault();
 
   // Get the input values
-  var trainName = $("#train-input").val()
-  var destination = $("#destination-input").val()
+  var trainName = $("#train-input").val().trim()
+  var destination = $("#destination-input").val().trim()
   var firstTime = $("#time-input").val()
   var frequency = $("#freq-input").val()
 
@@ -29,8 +29,7 @@ $("#submit").on("click", function(event) {
   console.log(frequency)
 
     // Save the new price in Firebase
-    //TODO: change to .push()
-    database.ref().set({
+    database.ref().push({
       trainName: trainName,
       destination: destination,
       firstTime: firstTime,
@@ -40,12 +39,13 @@ $("#submit").on("click", function(event) {
     // Change the HTML to reflect the new train
     var newTR = $("<tr>")
     var newTDName = $("<td>").text(trainName)
-    var vewTDDest = $("<td>").text(destination)
+    var newTDDest = $("<td>").text(destination)
+    var newTDFreq = $("<td>").text(frequency)
     //TODO: calculate first time and minutes away
     var newTDTime = $("<td>").text("*need to calc")
     var newTDMin = $("<td>").text("*need to calc")
 
-    newTR.append(newTDName).append(vewTDDest).append(newTDTime).append(newTDMin)
+    newTR.append(newTDName).append(newTDDest).append(newTDFreq).append(newTDTime).append(newTDMin)
     $("#train-table-body").append(newTR)
 
 });
@@ -54,7 +54,6 @@ $("#submit").on("click", function(event) {
 database.ref().on("value", function(snapshot) {
 
     //TODO: loop through all records and display to the grid
-
 
 }, function(error) {
     console.log("Database call failed: " + error.code)
