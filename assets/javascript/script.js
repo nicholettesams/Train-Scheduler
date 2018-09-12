@@ -36,24 +36,22 @@ $("#submit").on("click", function(event) {
       frequency: frequency
     });
 
-    // Change the HTML to reflect the new train
-    var newTR = $("<tr>")
-    var newTDName = $("<td>").text(trainName)
-    var newTDDest = $("<td>").text(destination)
-    var newTDFreq = $("<td>").text(frequency)
-    //TODO: calculate first time and minutes away
-    var newTDTime = $("<td>").text("*need to calc")
-    var newTDMin = $("<td>").text("*need to calc")
-
-    newTR.append(newTDName).append(newTDDest).append(newTDFreq).append(newTDTime).append(newTDMin)
-    $("#train-table-body").append(newTR)
-
 });
 
 // At the initial load and subsequent value changes, get a snapshot of the stored data.
-database.ref().on("value", function(snapshot) {
+database.ref().on("child_added", function(snapshot) {
 
-    //TODO: loop through all records and display to the grid
+  // Change the HTML to reflect the new train
+  var newTR = $("<tr>")
+  var newTDName = $("<td>").text(trainName)
+  var newTDDest = $("<td>").text(destination)
+  var newTDFreq = $("<td>").text(frequency)
+  //TODO: calculate first time and minutes away
+  var newTDTime = $("<td>").text("*need to calc")
+  var newTDMin = $("<td>").text("*need to calc")
+
+  newTR.append(newTDName).append(newTDDest).append(newTDFreq).append(newTDTime).append(newTDMin)
+  $("#train-table-body").append(newTR)
 
 }, function(error) {
     console.log("Database call failed: " + error.code)
