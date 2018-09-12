@@ -41,11 +41,13 @@ $("#submit").on("click", function(event) {
 // At the initial load and subsequent value changes, get a snapshot of the stored data.
 database.ref().on("child_added", function(snapshot) {
 
+  var sv = snapshot.val()
+
   // Change the HTML to reflect the new train
   var newTR = $("<tr>")
-  var newTDName = $("<td>").text(trainName)
-  var newTDDest = $("<td>").text(destination)
-  var newTDFreq = $("<td>").text(frequency)
+  var newTDName = $("<td>").text(sv.trainName)
+  var newTDDest = $("<td>").text(sv.destination)
+  var newTDFreq = $("<td>").text(sv.frequency)
   //TODO: calculate first time and minutes away
   var newTDTime = $("<td>").text("*need to calc")
   var newTDMin = $("<td>").text("*need to calc")
