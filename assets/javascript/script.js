@@ -41,18 +41,31 @@ $("#submit").on("click", function(event) {
 // At the initial load and subsequent value changes, get a snapshot of the stored data.
 database.ref().on("child_added", function(snapshot) {
 
-  //TODO: calculate Next Arrival and Minutes Away
+  // snapshot values
   var sv = snapshot.val()
+  
+  //TODO: calculate Next Arrival and Minutes Away
+  //Get hours and minutes separatly from the firstTime
   var hours = sv.firstTime.split(':')[0]
   var min = sv.firstTime.split(':')[1]
-  var currentDatewMin = dateFns.setMinutes(new Date(), min) 
-  var nextTimeDate = dateFns.addMinutes(currentDatewMin, sv.frequency)
-  var nextTime = dateFns.format(dateFns.getTime(nextTimeDate), "MM:SS")
-  console.log(sv.firstTime)
-  console.log(sv.frequency)
-  console.log(currentDatewMin)
-  console.log(nextTime)
-  var minDiff = dateFns.differenceInMinutes(new Date(), nextTimeDate)
+  console.log("firstTime: " + sv.firstTime)
+  //Add hours and minutes to today's date
+  var currentDatewTime = dateFns.setHours(new Date(), hours)
+  currentDatewTime = dateFns.setMinutes(currentDatewTime, min) 
+  console.log("currentDatewTime: " + currentDatewTime)
+  console.log("frequency: " + sv.frequency)
+
+  //Add frequency to the currentDatewTime until it's in the future
+  var nextTimeDate = currentDatewTime
+  while (!dateFns.isFuture(nextTimeDate)){
+    nextTimeDate = dateFns.addMinutes(nextTimeDate, sv.frequency)
+    console.log("nextTimeDate: " + nextTimeDate)
+  }
+  
+  //
+  var nextTime = dateFns.format(dateFns.getTime(nextTimeDate), "hh:mm")
+  console.log("nextTime: " + nextTime)
+  var minDiff = dateFns.differenceInMinutes(nextTimeDate, new Date())
 
   // Change the HTML to reflect the new train
   var newTR = $("<tr>")
