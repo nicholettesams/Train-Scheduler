@@ -41,16 +41,26 @@ $("#submit").on("click", function(event) {
 // At the initial load and subsequent value changes, get a snapshot of the stored data.
 database.ref().on("child_added", function(snapshot) {
 
+  //TODO: calculate Next Arrival and Minutes Away
   var sv = snapshot.val()
+  var hours = sv.firstTime.split(':')[0]
+  var min = sv.firstTime.split(':')[1]
+  var currentDatewMin = dateFns.setMinutes(new Date(), min) 
+  var nextTimeDate = dateFns.addMinutes(currentDatewMin, sv.frequency)
+  var nextTime = dateFns.format(dateFns.getTime(nextTimeDate), "MM:SS")
+  console.log(sv.firstTime)
+  console.log(sv.frequency)
+  console.log(currentDatewMin)
+  console.log(nextTime)
+  var minDiff = dateFns.differenceInMinutes(new Date(), nextTimeDate)
 
   // Change the HTML to reflect the new train
   var newTR = $("<tr>")
   var newTDName = $("<td>").text(sv.trainName)
   var newTDDest = $("<td>").text(sv.destination)
   var newTDFreq = $("<td>").text(sv.frequency)
-  //TODO: calculate first time and minutes away
-  var newTDTime = $("<td>").text("*need to calc")
-  var newTDMin = $("<td>").text("*need to calc")
+  var newTDTime = $("<td>").text(nextTime)
+  var newTDMin = $("<td>").text(minDiff)
 
   newTR.append(newTDName).append(newTDDest).append(newTDFreq).append(newTDTime).append(newTDMin)
   $("#train-table-body").append(newTR)
