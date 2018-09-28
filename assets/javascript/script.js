@@ -22,6 +22,15 @@ $("#submit").on("click", function(event) {
   var firstTime = $("#time-input").val()
   var frequency = $("#freq-input").val()
 
+  // Validate Input
+  var myRegEx  = /^[0-2]?[0-9]:[0-5][0-9]$/
+    var isValid = (myRegEx.test(firstTime));
+    if (!isValid) {
+        alert("not a valid time")
+        return;
+    }
+
+
   // Save the new price in Firebase
   database.ref().push({
     trainName: trainName,
